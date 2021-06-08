@@ -1,6 +1,5 @@
 from notejam import db
-from notejam import app
-from notejam.config import DevelopmentConfig
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -17,10 +16,9 @@ POSTGRES_PW = get_env_variable("POSTGRES_PW")
 POSTGRES_DB = get_env_variable("POSTGRES_DB")
 POSTGRES_PORT = get_env_variable("POSTGRES_PORT")
 
-db = SQLAlchemy()
+app = Flask(__name__)
 DB_URL = 'postgresql://{user}:{pw}@{url}:{port}/{db}'.format(user=POSTGRES_USER,pw=POSTGRES_PW,url=POSTGRES_URL,port=POSTGRES_PORT,db=POSTGRES_DB)
-# print(DB_URL)
-app.config.from_object(DevelopmentConfig)
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
-# Create db schema
+db = SQLAlchemy(app)
+
 db.create_all()
