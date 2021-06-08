@@ -23,4 +23,4 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 db = SQLAlchemy()
 db.init_app(app)
-db.create_all()
+db.create_all(app)
