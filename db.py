@@ -1,4 +1,6 @@
 from notejam import db
+from notejam import app
+from notejam.config import DevelopmentConfig
 from flask_sqlalchemy import SQLAlchemy
 import os
 
