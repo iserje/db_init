@@ -1,4 +1,5 @@
 from notejam import db
+from flask_sqlalchemy import SQLAlchemy
 import os
 
 def get_env_variable(name):
