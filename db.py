@@ -1,4 +1,5 @@
 from notejam import db
+from runserver import app
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -22,5 +23,6 @@ DB_URL = 'postgresql://{user}:{pw}@{url}:{port}/{db}'.format(user=POSTGRES_USER,
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 db = SQLAlchemy()
-db.init_app(app)
-db.create_all(app)
+with app.app_context():
+    db.init_app()
+    db.create_all()
